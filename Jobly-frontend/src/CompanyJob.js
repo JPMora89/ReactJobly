@@ -3,6 +3,7 @@ import userContext from './userContext';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './CompanyJob.css'
 
 function CompanyJob({job, company}) {
   const {appliedIds, checkApplied, applyToJobId} = useContext(userContext);
@@ -10,37 +11,39 @@ function CompanyJob({job, company}) {
 
   useEffect(() => {
     setAppliedState(checkApplied(job.id))
-  }, [appliedIds]);
+  }, [checkApplied, appliedIds]);
   
+  // const handleApply = async () => {
+  //   if (checkApplied(job.id)) {
+  //     return;
+  //   } else {
+  //     applyToJobId(job.id);
+  //     setAppliedState(true);
+  //   }
+  // }
   const handleApply = async () => {
-    if (checkApplied(job.id)) {
+    if (appliedState) {
       return;
     } else {
       applyToJobId(job.id);
       setAppliedState(true);
     }
-  }
+  };
 
-  const cardStyle = {
-    width: '18rem', 
-    height: '100%',
-    marginTop: '10px'
-  }
-  const divStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%'
-  }
   return (
-    <div style={divStyle}>
-      <Card style={cardStyle}>
+    <div id='CompanyJobCardDiv' >
+      <Card id='CompanyJobCard'>
         <Card.Body>
           <Card.Title>{job.title}</Card.Title>
-          <Card.Text>Salary: {job.salary}</Card.Text>
-          <Card.Text>Equity: {job.equity}</Card.Text>
-          <Button onClick={handleApply}>{appliedState? "Applied": "Apply"}</Button>
+          <Card.Text>Salary: ${job.salary}</Card.Text>
+          {/* <Card.Text>Equity: {job.equity}</Card.Text> */}
+
+{/* <Card.Text>Salary: ${job.salary.toLocaleString() || job.salary}</Card.Text> */}
+<Card.Text>Equity: {Number(job.equity).toLocaleString(undefined, {
+  style: "percent",
+  minimumFractionDigits: 2,
+})}</Card.Text>
+          <Button onClick={handleApply}>{appliedState ? "Applied": "Apply"}</Button>
         </Card.Body>
       </Card>
     </div>)

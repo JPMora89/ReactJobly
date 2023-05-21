@@ -3,6 +3,7 @@ import userContext from './userContext';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './JobCard.css';
 
 function JobCard({job}) {
   const {appliedIds, checkApplied, applyToJobId} = useContext(userContext);
@@ -21,26 +22,20 @@ function JobCard({job}) {
     }
   }
 
-  const cardStyle = {
-    width: '20rem', 
-    height: '100%',
-    marginTop: '10px',
-    textAlign: 'left'
-  }
-  const divStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%'
-  }
+
   return (
-    <div style={divStyle}>
-      <Card style={cardStyle}>
+    <div id='JobCardDivStyle'>
+      <Card id='JobCardStyle' >
         <Card.Header className="bg-dark text-white">{job.title}</Card.Header>
         <Card.Body>
-          <Card.Text>Salary: {job.salary}</Card.Text>
-          <Button onClick={handleApply}>{appliedState? "Applied": "Apply"}</Button>
+        <Card.Text>Company: {job.companyHandle}</Card.Text>
+   
+        <Card.Text>Salary: ${job.salary}</Card.Text>
+        
+        <Card.Text>Equity: {Number(job.equity).toLocaleString(undefined, {
+          style: "percent",
+          minimumFractionDigits: 2, })}</Card.Text>
+          <Button onClick={handleApply}>{appliedState ? "Applied": "Apply"}</Button>
         </Card.Body>
       </Card>
     </div>

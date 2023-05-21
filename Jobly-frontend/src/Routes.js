@@ -7,13 +7,14 @@ import JobList from './JobList';
 import LoginForm from './LoginForm';
 import Profile from './Profile';
 import SignupForm from './SignupForm';
+import HomeAnon from "./HomeAnon";
 
 function Routes({ login, register, token }) {
   return (
     <div>
       <Switch>
         <Route exact path="/">
-        {token ? <CompanyList/> : <Redirect to='/login'/>}
+        {token ? <Homepage/> : <HomeAnon/>}
         </Route>
         <Route exact path="/companies">
           {token ? <CompanyList/> : <Redirect to='/login'/>}

@@ -3,6 +3,7 @@ import JoblyApi from './api';
 import userContext from './userContext';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './Profile.css'
 
 function Profile() {
   const {userInfo, currentUser} = useContext(userContext);
@@ -30,13 +31,14 @@ function Profile() {
   }
     return (
       <>
-        <h1 style={{color: 'white'}}>Profile</h1>
+      <div className='ProfileForm'>
+        <h1 id='ProfileHeader'>Profile</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Control
             name="firstName"
             id="firstName"
             type="text"
-            placeholder="First Name"
+            placeholder={userInfo.firstName}
             onChange={handleChange}
             value={formData.firstName}
           />
@@ -44,7 +46,7 @@ function Profile() {
             name="lastName"
             id="lastName"
             type="text"
-            placeholder="Last Name"
+            placeholder={userInfo.lastName}
             onChange={handleChange}
             value={formData.lastName}
           />
@@ -52,7 +54,7 @@ function Profile() {
             name="email"
             id="email"
             type="text"
-            placeholder="Email"
+            placeholder={userInfo.email}
             onChange={handleChange}
             value={formData.email}
           />
@@ -64,8 +66,9 @@ function Profile() {
             onChange={handleChange}
             value={formData.password}
           />
-          <Button type='submit'>Save</Button>
+          <Button id="EditProfileButton" type='submit'>Edit</Button>
         </Form>
+      </div>
       </>
     )
   }

@@ -7,6 +7,7 @@ import NavBar from './Navbar';
 import JoblyApi from './api';
 import useLocalStorage from './useLocalStorage';
 import userContext from './userContext';
+import Homepage from './Homepage';
 
 function App() {
   const INITIAL_STATE = '';
@@ -69,7 +70,7 @@ function App() {
     if (appliedIds.has(res.applied)) {
       return;
     } else {
-      appliedIds.add(res.applied);
+      setAppliedIds(new Set(appliedIds.add(res.applied)));
     }
   }
 
@@ -81,6 +82,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <userContext.Provider value={{userInfo, currentUser, checkApplied, appliedIds, applyToJobId}}>
+          
           <NavBar 
             currentUser={currentUser} 
             logout={logout}
@@ -90,6 +92,8 @@ function App() {
             register={register}
             token={currentToken}
           />
+          {/* <Homepage /> */}
+
         </userContext.Provider>
       </BrowserRouter>
     </div>

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './LoginForm.css';
 
 function LoginForm({login}) {
   const INITIAL_STATE = {username: "", password: ""}
@@ -16,13 +17,13 @@ function LoginForm({login}) {
     e.preventDefault();
     login(formData);
     setFormData(INITIAL_STATE);
-    history.push("/companies");
+    history.push("/");
     alert("Login Successful!");
   }
     return (
       <>
-        <h1 style={{color: 'white'}}>Login</h1>
-        <Form onSubmit={handleSubmit}>
+        <h1 id='LoginFormHeader' style={{color: 'white'}}>Login</h1>
+        <Form id='LoginForm' onSubmit={handleSubmit}>
           <Form.Control
             name="username"
             type="text"
@@ -37,7 +38,7 @@ function LoginForm({login}) {
             onChange={handleChange}
             value={formData.password}
           />
-          <Button type="submit">Login</Button>
+          <Button id='LoginFormButton' type="submit">Login</Button>
         </Form>
       </>
     )

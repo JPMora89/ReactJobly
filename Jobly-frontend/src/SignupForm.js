@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './SignupForm.css';
 
 function SignupForm({register}) {
   const INITIAL_STATE = {
@@ -28,8 +29,8 @@ function SignupForm({register}) {
   }
     return (
       <>
-        <h1 style={{color: 'white'}}>Signup page</h1>
-        <Form onSubmit={handleSubmit}>
+        <h1 id='SignupFormHeader'>Sign-up</h1>
+        <Form id='SignupForm' onSubmit={handleSubmit}>
           <Form.Control
             name="firstName"
             id="firstName"
@@ -70,7 +71,7 @@ function SignupForm({register}) {
             onChange={handleChange}
             value={formData.password}
           />
-          <Button type="submit">Sign Up</Button>
+          <Button id='SignupFormButton' type="submit">Sign Up</Button>
         </Form>
       </>
     )
